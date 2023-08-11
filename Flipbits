@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int flipBits(int[] arr,int n) {
+        //Write your code here
+		/*int sum=0;
+		for(int i=0;i<n;i++){
+			sum+=arr[i];
+		}
+		if(sum==0){
+          return n;
+		}else if( sum==n){
+			return n;
+			}*/
+			int max=0, cmax=0;
+			int to=0;
+			for(int i=0;i<n;i++){
+				if(arr[i]==1)
+				to++;
+				int val=(arr[i]==1)? -1:1;
+				cmax=Math.max(val,cmax+val);
+				max=Math.max(max,cmax);
+				
+
+			}
+			return to+max;
+			
+			}							
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
