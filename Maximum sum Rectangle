@@ -1,0 +1,54 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+public static int maxSumRectangle(int[][] arr, int n, int m)
+    {
+        // Write your code here.
+
+/*t=top
+b=bottom
+left
+r=right*/
+        int msum=Integer.MIN_VALUE;
+        int t=0,b=0,l=0,r=0;
+
+        int csum;
+        int cl;
+        int cr;
+        for( int lcol=0;lcol<m;lcol++){
+            int[]rsum=new int[n];
+            for(int rcol=lcol;rcol<m;rcol++){
+                for( int row=0;row<n;row++){
+                    rsum[row]+=arr[row][rcol];
+                }
+                csum=rsum[0];
+                cl=0;
+                cr=0;
+                int ttop=0;
+                int cmax=rsum[0];
+                for(int i=1;i<n;i++){
+                    if(cmax<0){
+                        cmax=rsum[i];
+                        ttop=i;
+                    }else{
+                        cmax+=rsum[i];
+                    }
+                    if(cmax>csum){
+                        csum=cmax;
+                        cl=ttop;
+                        cr=i;
+                    }
+                }
+                if(csum>msum){
+                    msum=csum;
+                    t=cl;
+                    b=cr;
+                    l=lcol;
+                    r=rcol;
+                }
+            }
+        }
+        return msum;
+    }
+}
