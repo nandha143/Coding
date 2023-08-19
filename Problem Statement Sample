@@ -1,0 +1,22 @@
+import java.util.*;
+class Solution {
+	
+	public static void main(String args[]) {
+		
+		// Write code here
+		Scanner sc=new Scanner(System.in);
+		String f=sc.nextLine();
+		if(f.matches("[A-Z]+")){
+			System.out.println("1");
+		}
+		else if(f.matches("[a-z]+")){
+			System.out.println("0");
+		}
+		else{
+			System.out.println("-1");
+
+		}
+
+		
+	}
+}
