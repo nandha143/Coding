@@ -1,0 +1,55 @@
+import java.util.Stack;
+public class Solution {
+    public static String infixToPostfix(String exp) {
+        // Write your code here
+        // pe=posfixepression
+
+        Stack<Character> n=new Stack<>();
+        StringBuilder pe=new StringBuilder();
+        for(int i=0;i<exp.length();i++){
+            char c=exp.charAt(i);
+            if(Character.isLetterOrDigit(c)){
+                pe.append(c);
+            }
+            else if(c=='('){
+                n.push(c);
+            } 
+            else if(c==')'){
+                while(!n.isEmpty() && n.peek()!='('){
+                    pe.append(n.pop());
+                }
+                if(!n.isEmpty() && n.peek()!='('){
+                    return invalid expression;
+               } else{
+                    n.pop();
+                }
+            }
+            else{
+                while(!n.isEmpty() && precedence(c)<=precedence(n.peek())){
+                    pe.append(n.pop());
+                }
+                n.push(c);
+            }
+            
+        }
+        while(!n.isEmpty()){
+            pe.append(n.pop());
+        }
+        return pe.toString();
+    }
+
+    static int precedence(char ch){
+        switch(ch){
+            case '+':
+            case '-':
+              return 1;
+            case '*':
+            case '/':
+               return 2;
+            case '^':
+               return 3;
+               
+        }
+        return -1;
+    }
+}
